@@ -14,7 +14,7 @@ class TodoContainer extends React.Component{
             {
                 id:2,
                 title:"Develop the website",
-                completed:false
+                completed:true
             },
             {
                 id:3,
@@ -29,11 +29,38 @@ class TodoContainer extends React.Component{
         ]
     }
 
+    handleChange = (id)=>{
+        this.setState(prevState => ({
+            todos: prevState.todos.map(todo =>{
+                if(todo.id === id){
+                    return {
+                        ...todo,
+                        completed: !todo.completed,
+                    }
+                }
+                return todo
+            })
+        }))
+    }
+
+    deleteTodo = (id)=>{
+        this.setState({
+            todos: [
+                ...this.state.todos.filter(todo=>{
+                    return todo.id !== id;
+                })
+            ]
+        });
+    }
+
     render(){
         return(
             <div>
                 <Header />
-                <TodoList todos={this.state.todos}></TodoList>
+                <TodoList 
+                todos={this.state.todos} 
+                deleteTodoProps = {this.deleteTodo}
+                handleChangeProps = {this.handleChange} />
             </div>
         )
     }
