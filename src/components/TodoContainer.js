@@ -3,7 +3,7 @@ import React from "react";
 import TodoList from "./TodoList";
 import Header from "./Header";
 import InputTodo from "./InputTodo";
-
+//UUID
 import {v4 as uuidv4} from "uuid";
 
 class TodoContainer extends React.Component{
@@ -69,14 +69,17 @@ class TodoContainer extends React.Component{
 
     render(){
         return(
-            <div>
-                <Header />
-                <InputTodo addTodoItem={this.addTodoItem} />
-                <TodoList 
-                todos={this.state.todos} 
-                deleteTodoProps = {this.deleteTodo}
-                handleChangeProps = {this.handleChange} />
+            <div className="container">
+                <div className="inner">
+                    <Header />
+                    <InputTodo addTodoItem={this.addTodoItem} />
+                    <TodoList 
+                    todos={this.state.todos} 
+                    deleteTodoProps = {this.deleteTodo}
+                    handleChangeProps = {this.handleChange} />
+                </div>
             </div>
+            
         )
     }
 }
